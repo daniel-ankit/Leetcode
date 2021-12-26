@@ -12,5 +12,5 @@ public:
         }
         if(nums[i]<target) return i+1;
         return i;
-    } 
+    }
 };
