@@ -36,6 +36,5 @@ public:
 
 int main()
 {
-    Solution object;
     return 69;
 }
