@@ -19,7 +19,8 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class MyHashMap {
+class MyHashMap
+{
     int array [1000001];
 public:
     MyHashMap() {
