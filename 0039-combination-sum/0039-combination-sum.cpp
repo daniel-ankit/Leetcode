@@ -1,21 +1,22 @@
 class Solution {
     vector<vector<int>> ans;
-    void fn(vector<int> temp, int i, vector<int>& nums, int target)
+    void fn(vector<int>&nums, int i, vector<int> &curr, int target)
     {
-        if(i>=nums.size() || target<0) return;
+        if(i >= nums.size() || target < 0) return;
         if(target==0)
         {
-            ans.push_back(temp);
+            ans.push_back(curr);
             return;
         }
-        temp.push_back(nums[i]);
-        fn(temp, i, nums, target-nums[i]);
-        temp.pop_back();
-        fn(temp, i+1, nums, target);
+        curr.push_back(nums[i]);
+        fn(nums, i, curr, target-nums[i]);
+        curr.pop_back();
+        fn(nums, i+1, curr, target);
     }
 public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        fn({}, 0, candidates, target);
+        vector<int> curr;
+        fn(candidates, 0, curr, target);
         return ans;
     }
 };
