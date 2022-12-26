@@ -1,15 +1,15 @@
 //{ Driver Code Starts
 //Initial template for C++
 
-#include<bits/stdc++.h> 
-using namespace std; 
+#include <bits/stdc++.h>
+using namespace std;
 
 // } Driver Code Ends
 //User function template for C++
 
-class Solution{   
-public:
-    int findMinInsertions(string S){
+class Solution{
+  public:
+    int countMin(string S){
         int n = S.size();
         string R = S;
         reverse(R.begin(), R.end());
@@ -26,21 +26,18 @@ public:
     }
 };
 
-
 //{ Driver Code Starts.
-
-
-
 int main(){
     int t;
-    cin>>t;
+    cin >> t;
     while(t--){
-        string S;
-        cin>>S;
+        string str;
+        cin >> str;
         Solution ob;
-        cout<<ob.findMinInsertions(S)<<endl;
+        cout << ob.countMin(str) << endl;
     }
-    return 0;
+return 0;
 }
+
 
 // } Driver Code Ends
