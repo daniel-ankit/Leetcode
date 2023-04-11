@@ -17,7 +17,7 @@
 </ul>
 
 <p>&nbsp;</p>
-<p><strong>Example 1:</strong></p>
+<p><strong class="example">Example 1:</strong></p>
 
 <pre><strong>Input:</strong> s = "leet**cod*e"
 <strong>Output:</strong> "lecoe"
@@ -27,7 +27,7 @@
 - The closest character to the 3<sup>rd</sup> star is 'd' in "leco<strong><u>d</u></strong>*e". s becomes "lecoe".
 There are no more stars, so we return "lecoe".</pre>
 
-<p><strong>Example 2:</strong></p>
+<p><strong class="example">Example 2:</strong></p>
 
 <pre><strong>Input:</strong> s = "erase*****"
 <strong>Output:</strong> ""
