@@ -9,36 +9,40 @@ using namespace std;
 class Solution {
   public:
     int findCity(int n, int m, vector<vector<int>>& edges, int distance) {
-        vector<vector<int>>matrix(n, vector<int>(n, INT_MAX));
+        vector<vector<int>>mat(n, vector<int>(n, INT_MAX));
         for(auto x:edges)
         {
-            matrix[x[0]][x[1]] = x[2];
-            matrix[x[1]][x[0]] = x[2];
+            mat[x[0]][x[1]] = x[2];
+            mat[x[1]][x[0]] = x[2];
         }
-        for(int i=0; i<n; i++) matrix[i][i] = 0;
-        for(int via=0; via<n; via++)
+        for(int i=0; i<n; i++) mat[i][i] = 0;
+        
+        for(int via = 0; via<n; via++)
         {
             for(int i=0; i<n; i++)
             {
                 for(int j=0; j<n; j++)
                 {
-                    if(matrix[i][via] == INT_MAX || matrix[via][j] == INT_MAX) continue;
-                    matrix[i][j] = min(matrix[i][j], matrix[i][via]+matrix[via][j]);
+                    if(mat[i][via] == INT_MAX || mat[via][j] == INT_MAX) continue;
+                    mat[i][j] = min(mat[i][j], mat[i][via] + mat[via][j]);
                 }
             }
         }
-        int ans = -1, minn = n;
+        int min = n, ind = -1;
         for(int i=0; i<n; i++)
         {
             int cnt = 0;
-            for(int j=0; j<n; j++) if(matrix[i][j] <= distance) cnt++;
-            if(cnt<=minn)
-            {  
-                ans = i;
-                minn = cnt;
+            for(int j=0; j<n; j++)
+            {
+                if(mat[i][j] <= distance) cnt++;
+            }
+            if(cnt <= min)
+            {
+                ind = i;
+                min = cnt;
             }
         }
-        return ans;
+        return ind;
     }
     
 };
