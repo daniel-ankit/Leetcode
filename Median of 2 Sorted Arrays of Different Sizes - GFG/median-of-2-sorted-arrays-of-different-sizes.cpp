@@ -7,17 +7,25 @@ double MedianOfArrays(vector<int>& array1, vector<int>& array2);
 
 
 // } Driver Code Ends
+//User function Template for C++
 
 class Solution{
     public:
     double MedianOfArrays(vector<int>& array1, vector<int>& array2)
     {
-        vector<int> ans;
-        for(auto x:array1) ans.push_back(x);
-        for(auto x:array2) ans.push_back(x);
-        sort(ans.begin(), ans.end());
-        int n = ans.size();
-        return ans.size()%2==0 ? double(ans[(n-1)/2]+ans[n/2])/2 : (double)ans[n/2];
+        vector<int>nums;
+        int i=0, j=0, n=array1.size(), m=array2.size();
+        while(i<n && j<m)
+        {
+            if(array1[i]<=array2[j]) nums.push_back(array1[i++]);
+            else nums.push_back(array2[j++]);
+        }
+        while(i<n) nums.push_back(array1[i++]);
+        while(j<m) nums.push_back(array2[j++]);
+        
+        if(nums.size()%2) return nums[nums.size()/2];
+        return (nums[nums.size()/2 -1] + nums[nums.size()/2])/2.0;
+    
     }
 };
 
