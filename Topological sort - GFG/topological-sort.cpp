@@ -5,54 +5,34 @@ using namespace std;
 // } Driver Code Ends
 class Solution
 {
-    void dfs(vector<int> adj[], vector<int> &vis, vector<int>&topo, int ind) {
-        vis[ind] = 1;
-        for(auto x:adj[ind])
-        {
-            if(!vis[x]) dfs(adj, vis, topo, x);
-        }
-        topo.push_back(ind);
-    }
 	public:
 	//Function to return list containing vertices in Topological order. 
-	vector<int> topoSort(int V, vector<int> adj[]) 
+	vector<int> topoSort(int n, vector<int> adj[]) 
 	{
-	    vector<int>indegree(V, 0);
-	    for(int i=0; i<V; i++)
+	    vector<int>topo, indgree(n, 0);
+	    
+	    for(int i=0; i<n; i++)
 	    {
-	        for(auto x:adj[i])
-	            indegree[x]++;
+    	    for(auto x:adj[i])
+    	        indgree[x]++;
 	    }
-	    queue<int> q;
-	    vector<int> topo;
-	    for(int i=0; i<V; i++)
+	    queue<int>q;
+	    for(int i=0; i<n; i++)
 	    {
-	        if(indegree[i]==0) q.push(i);
+	        if(indgree[i]==0) q.push(i);
 	    }
 	    while(!q.empty())
 	    {
-	        int now = q.front();
+	        auto now = q.front();
 	        q.pop();
-    	    topo.push_back(now);
+	        topo.push_back(now);
 	        for(auto x:adj[now])
 	        {
-	            indegree[x]--;
-	            if(indegree[x]==0) q.push(x);
+	            indgree[x]--;
+	            if(indgree[x]==0) q.push(x);
 	        }
 	    }
 	    return topo;
-	    {
-	    vector<int> vis(V, 0), topo;
-	    for(int i=0; i<V; i++)
-	    {
-	        if(!vis[i])
-	        {
-	            dfs(adj, vis, topo, i);
-	        }
-	    }
-	    reverse(topo.begin(), topo.end());
-	    return topo;
-	    }
 	}
 };
 
