@@ -1,24 +1,24 @@
 class Solution {
-    bool cycle(vector<vector<int>>&grid, int curr, int i, vector<int>&col)
+    bool check(int i, int color, vector<vector<int>>& graph, vector<int>&colors)
     {
-        col[i] = curr;
-        for(auto x:grid[i])
+        colors[i] = color;
+        for(auto x:graph[i])
         {
-            if(col[x]==-1)
+            if(colors[x]==-1)
             {
-                if(cycle(grid, !curr, x, col)) return 1;
+                if(check(x, !color, graph, colors)) return 1;
             }
-            else if(col[x]==col[i]) return 1;
+            else if(colors[i] == colors[x]) return 1;
         }
         return 0;
     }
 public:
-    bool isBipartite(vector<vector<int>>& grid) {
-        int n = grid.size();
-        vector<int> col(n, -1);
+    bool isBipartite(vector<vector<int>>& graph) {
+        int n = graph.size();
+        vector<int>colors(n, -1);
         for(int i=0; i<n; i++)
         {
-            if(col[i] == -1 && cycle(grid, 0, i, col)) return 0;
+            if(colors[i] == -1 && check(i, 0, graph, colors)) return 0;
         }
         return 1;
     }
