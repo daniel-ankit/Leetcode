@@ -2,7 +2,6 @@ class Solution {
 public:
     bool canFinish(int n, vector<vector<int>>& pre) {
         vector<int>indegree(n, 0);
-        int cnt = 0;
         vector<int>adj[n];
         for(auto x:pre)
         {
@@ -14,6 +13,7 @@ public:
         {
             if(!indegree[i]) q.push(i);
         }
+        int cnt = 0;
         while(!q.empty())
         {
             auto now = q.front();
@@ -22,7 +22,7 @@ public:
             for(auto x:adj[now])
             {
                 indegree[x]--;
-                if(!indegree[x]) q.push(x);
+                if(indegree[x]==0) q.push(x);
             }
         }
         return cnt == n;
